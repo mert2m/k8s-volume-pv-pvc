@@ -1,0 +1,18 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: ornek-pod
+spec:
+  volumes:
+    - name: ornek-claim
+      persistentVolumeClaim:
+       claimName: ornek-volume-claim
+  containers:
+    - name: ornek-pv-container
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: ornek-claim
